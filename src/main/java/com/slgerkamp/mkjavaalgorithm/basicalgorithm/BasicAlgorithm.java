@@ -1,10 +1,41 @@
 package com.slgerkamp.mkjavaalgorithm.basicalgorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * クラスを分ける必要が特にないのでひとつのユーティリティクラスにする
  *
  */
 public class BasicAlgorithm {
+	
+	/** number段のピラミッド
+	 * @param number
+	 * @return
+	 */
+	public static List<String> createNumberPyramid(int number){
+		
+		List<String> list = new ArrayList<String>();
+
+		for(int i = 1 ; i <= number; i++){
+			StringBuffer spacer = new StringBuffer("");
+			for(int j = 0; j < number - i; j++){
+				spacer.append(" ");
+			}
+			StringBuffer numbers = new StringBuffer("");
+			for(int k = 0; k < i*2-1; k++){
+				numbers.append(i);
+			}
+			String base = spacer.toString() + numbers.toString() + spacer.toString();			
+			list.add(base);
+		}
+		
+		for(String s : list){
+			System.out.println(s);
+		}
+
+		return list;
+	}
 	
 	/**
 	 * ３値の最大値を求める
