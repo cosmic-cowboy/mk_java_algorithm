@@ -45,7 +45,7 @@ public class Mid3Test {
 	public void 数字３つから中央値を選ぶ(Fixture f){
 		// ３つのテストが行われているか確認用
 		System.out.println(f);
-		assertThat(Mid3.midInt(f.a, f.b, f.c), is(f.expected));
+		assertThat(BasicAlgorithm.midInt(f.a, f.b, f.c), is(f.expected));
 
 	}
 	

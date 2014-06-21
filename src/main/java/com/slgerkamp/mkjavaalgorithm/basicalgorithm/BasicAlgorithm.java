@@ -1,13 +1,32 @@
 package com.slgerkamp.mkjavaalgorithm.basicalgorithm;
 
-
 /**
- * ３値の中央値を求める
+ * クラスを分ける必要が特にないのでひとつのユーティリティクラスにする
  *
  */
-public class Mid3 {
-
-	// ３値の中央値を求める
+public class BasicAlgorithm {
+	
+	/**
+	 * ３値の最大値を求める
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return ３値の最大値
+	 */
+	public static int maxInt(int a, int b, int c){
+		int max = a;
+		if(max < b) max = b;
+		if(max < c) max = c;
+		return max;
+	}
+	
+	/**
+	 * ３値の中央値を求める
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return ３値の中央値
+	 */
 	public static int midInt(int a, int b, int c){
 		
 		int mid;

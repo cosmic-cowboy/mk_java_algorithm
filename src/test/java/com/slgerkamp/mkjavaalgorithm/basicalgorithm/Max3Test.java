@@ -45,7 +45,7 @@ public class Max3Test {
 	public void 数字３つから最大値を選ぶ(Fixture f){
 		// ３つのテストが行われているか確認用
 		System.out.println(f);
-		assertThat(Max3.maxInt(f.a, f.b, f.c), is(f.expected));
+		assertThat(BasicAlgorithm.maxInt(f.a, f.b, f.c), is(f.expected));
 
 	}
 	
