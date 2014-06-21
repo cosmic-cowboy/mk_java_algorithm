@@ -15,8 +15,8 @@ public class BasicDataStructure {
 	 */
 	public static List<Integer>  primeNumber(int number){
 		List<Integer> list = new ArrayList<Integer>();
-		
-		for(int i = 2; i < number; i++){
+		list.add(2);
+		for(int i = 3; i < number; i+=2){
 			boolean isPrime = true;
 			for(int j : list){
 				if(i % j == 0){
