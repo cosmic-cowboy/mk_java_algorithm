@@ -1,5 +1,9 @@
 package com.slgerkamp.mkjavaalgorithm.basicalgorithm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;
@@ -13,7 +17,50 @@ import static org.hamcrest.CoreMatchers.*;
  */
 @RunWith(Enclosed.class)
 public class BasicAlgorithmTest {
+
+	/**
+	 * n段ピラミッド作成テストクラス
+	 * パラメータ化テストを実践
+	 * Theoriesはパラメータ化されたユニットテストをサポートするテストランナー
+	 * RunWithで指定する
+	 */
+	@RunWith(Theories.class)
+	public static class n段ピラミッド作成テスト{
+		@DataPoint
+		public static PyramidFixture PARAM_1 = 
+			new PyramidFixture(3, 
+				new ArrayList<String>(
+						(Arrays.asList(
+							"  1  ",
+							" 222 ",
+							"33333")
+						)
+					)
+				);
+		@DataPoint
+		public static PyramidFixture PARAM_2 = 
+				new PyramidFixture(6, 
+						new ArrayList<String>(
+								(Arrays.asList(
+									"     1     ",
+									"    222    ",
+									"   33333   ",
+									"  4444444  ",
+									" 555555555 ",
+									"66666666666")
+								)
+							)
+						);		
+
+		@Theory
+		public void n段ピラミッド作成(PyramidFixture pyramidFixture){			
+			assertThat(
+				BasicAlgorithm.createNumberPyramid(pyramidFixture.number), 
+				is(pyramidFixture.expected)
+			);
+		}
 	
+	}
 	/**
 	 * ３値の最大値を求めるテストクラス
 	 * パラメータ化テストを実践
@@ -121,6 +168,26 @@ public class BasicAlgorithmTest {
 		@Override
 		public String toString() {
 			return String.format("when value a=%s b=%s, c=%s, expected=%s", a, b, c, expected);
+		}
+	}
+
+	
+	// パラメータをFixtureオブジェクトにまとめる
+	static class PyramidFixture {
+		// テストデータ
+		int number;
+		// 期待値
+		List<String> expected;
+
+		public PyramidFixture(int number, List<String> expected) {
+			super();
+			this.number = number;
+			this.expected = expected;
+		}
+		
+		@Override
+		public String toString() {
+			return String.format("when value =%s, expected=%s", number);
 		}
 	}
 }
