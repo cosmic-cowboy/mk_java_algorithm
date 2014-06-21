@@ -18,7 +18,7 @@ public class BasicDataStructure {
 		
 		for(int i = 2; i < number; i++){
 			boolean isPrime = true;
-			for(int j = 2; j < i; j++){
+			for(int j : list){
 				if(i % j == 0){
 					isPrime = false;
 					break;
