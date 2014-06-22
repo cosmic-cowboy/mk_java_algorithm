@@ -2,6 +2,55 @@ package com.slgerkamp.mkjavaalgorithm.search;
 
 public class Search {
 
+
+	/**
+	 * ２分探索（同じ値があった場合、その先頭のインデックスを返す）
+	 * @param intArray
+	 * @param searchNumber
+	 * @return
+	 */
+	public static int binarySearchX(int [] intArray, int searchNumber){
+		
+		// 走査対象の先頭のインデックス
+		int lowIndex = 0;
+		// 走査対象の最後尾のインデックス
+		int highIndex = intArray.length - 1;
+		
+		// 配列数の表示
+		displayArrayCounter(intArray);
+
+		// 各インデックスは加算、減算される
+		// lowIndexがhighIndexと同じ、または上回った場合
+		// searchNumberは見つからなかったということになる。
+		while(lowIndex <= highIndex){
+			// 配列の中央から走査をはじめる
+			int nowIndex = (lowIndex + highIndex) / 2;
+			
+			// 配列の表示			
+			displaySearch(intArray, lowIndex, highIndex, nowIndex);
+			
+			if(intArray[nowIndex] == searchNumber){
+				if(nowIndex > 0 && intArray[nowIndex - 1] == searchNumber){
+					highIndex = nowIndex - 1;
+				} else {
+					return nowIndex;					
+				}
+			} else if(intArray[nowIndex] < searchNumber){
+				// 現在のインデックスの値より検索対象の値が大きい場合
+				// 操作対象の先頭インデックスを現在のインデックス + 1にする
+				lowIndex  = nowIndex + 1;
+			} else {
+				// 現在のインデックスの値より検索対象の値が小さい場合
+				// 操作対象の最後尾インデックスを現在のインデックス - 1にする
+				highIndex = nowIndex - 1;
+			}
+		}
+		
+		// ループを抜けてしまった場合
+		return -1;
+	}
+
+	
 	/**
 	 * ２分探索
 	 * @param intArray
