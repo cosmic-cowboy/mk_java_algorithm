@@ -25,4 +25,22 @@ public class Resur {
 		}
 		return list;
 	}
+
+	/**
+	 * 再帰のアルゴリズム_vol2
+	 * @param i
+	 * @param list
+	 * @return
+	 */
+	public static List<Integer> resur_2(int i, List<Integer> list){
+		if(i > 0){
+			resur_2(i - 2, list);
+			list.add(i);
+			System.out.println(i);
+			resur_2(i - 1, list);
+		} else {
+			System.out.println("death:" + i);			
+		}
+		return list;
+	}
 }
