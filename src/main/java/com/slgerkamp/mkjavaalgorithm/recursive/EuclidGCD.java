@@ -20,4 +20,19 @@ public class EuclidGCD {
 			return gcd(y, x % y);
 		}
 	}
+
+	/**
+	 * arrayの最大公約数を求める
+	 * @param array
+	 * @return
+	 */
+	public static int gcdArray(int [] array){
+		int tester = array[0];
+		int testee;
+		for(int s : array){
+			testee = s;
+			tester = gcd(tester, testee);
+		}
+		return tester;
+	}
 }

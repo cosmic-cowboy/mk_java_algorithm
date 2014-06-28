@@ -44,6 +44,23 @@ public class EuclidGCDTest {
 		
 	}
 
+
+	@RunWith(Theories.class)
+	public static class 複数の要素の最大公約数 {
+		@DataPoints
+		public static ArrayFixture[] ARRAYFIXTURES = {
+			new ArrayFixture(new int [] {22, 8, 4, 2}, 2),
+			new ArrayFixture(new int [] {2,4, 8, 22}, 2),
+			new ArrayFixture(new int [] {13, 11, 3, 4, 6}, 1),
+			new ArrayFixture(new int [] {18,9, 27}, 9)
+		};
+		
+		@Theory
+		public void 最大公約数を求める(ArrayFixture f){
+			assertThat(EuclidGCD.gcdArray(f.array), is(f.expected));
+		}
+	}
+
 	static class Fixture{
 
 		public int x;
@@ -63,4 +80,24 @@ public class EuclidGCDTest {
 		}
 
 	}
+	
+
+	static class ArrayFixture{
+
+		public int [] array;
+		public int expected;
+		
+		public ArrayFixture(int [] array, int expected) {
+			super();
+			this.array = array;
+			this.expected = expected;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("when array =%s, expected=%s", array, expected);
+		}
+
+	}
+
 }
