@@ -13,6 +13,7 @@ package com.slgerkamp.mkjavaalgorithm.recursive;
  */
 public class TowerOfHanoi {
 
+	static String[] names = {"A軸","B軸","C軸"};
 	/**
 	 * 重ねられた円盤を移すための最短距離
 	 * @param num
@@ -25,7 +26,7 @@ public class TowerOfHanoi {
 		}
 		
 		// 底の円盤を開始軸から目的軸へ
-		System.out.println("円盤" + no + "を" + x + "から" + y + "へ");
+		System.out.println("円盤" + no + "を" + names[x-1] + "から" + names[y-1] + "へ");
 		counter++;
 		
 		// 底の円盤を除いたグループ（no - 1の円盤）を中間軸から目的軸へ
