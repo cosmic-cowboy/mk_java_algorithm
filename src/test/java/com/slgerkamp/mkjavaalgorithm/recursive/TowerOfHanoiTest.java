@@ -1,5 +1,6 @@
 package com.slgerkamp.mkjavaalgorithm.recursive;
 
+import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -13,19 +14,38 @@ import static org.hamcrest.CoreMatchers.*;
  * 重ねられた円盤を最短の回数で移すためのアルゴリズムのテスト
  *
  */
-@RunWith(Theories.class)
+@RunWith(Enclosed.class)
 public class TowerOfHanoiTest {
 
-	@DataPoints
-	public static Fixture [] FIXTURES = {
-		new Fixture(2, 1, 3, 0, 3),
-		new Fixture(3, 1, 3, 0, 7)
-	};
-	
-	@Theory
-	public void 重ねられた円盤を移すための最短距離を求める(Fixture f){
-		assertThat(TowerOfHanoi.move(f.no, f.depature, f.distination, f.counter) ,is(f.expected));
+	@RunWith(Theories.class)
+	public static class 再帰を用いて重ねられた円盤を移すための最短距離を求める{
+		@DataPoints
+		public static Fixture [] FIXTURES = {
+			new Fixture(2, 1, 3, 0, 3),
+			new Fixture(3, 1, 3, 0, 7)
+		};
+		
+		@Theory
+		public void 重ねられた円盤を移すための最短距離を求める(Fixture f){
+			assertThat(TowerOfHanoi.move(f.no, f.depature, f.distination, f.counter) ,is(f.expected));
+		}		
 	}
+
+	@RunWith(Theories.class)
+	public static class 再帰を用いないで重ねられた円盤を移すための最短距離を求める{
+		@DataPoints
+		public static Fixture [] FIXTURES = {
+			new Fixture(2, 1, 3, 0, 3),
+			new Fixture(3, 1, 3, 0, 7)
+		};
+		
+		@Theory
+		public void 重ねられた円盤を移すための最短距離を求める(Fixture f){
+			assertThat(TowerOfHanoiNotResur.move(f.no, f.depature, f.distination) ,is(f.expected));
+		}		
+	}
+
+
 	
 	static class Fixture{
 		int no;
