@@ -14,6 +14,21 @@ import static org.hamcrest.CoreMatchers.*;
  */
 @RunWith(Enclosed.class)
 public class QueenTest {
+	
+	@RunWith(Theories.class)
+	public static class 王妃問題のための分枝限定操作テスト {
+		
+		@DataPoints
+		public static Fixture [] FIXTURES = {
+			new Fixture(8, 92)
+		};
+		
+		@Theory
+		public void 王妃問題のための分枝限定操作(Fixture f){
+			assertThat(new EightQueen(f.num).set(), is(f.expected));
+		}
+		
+	}
 
 	@RunWith(Theories.class)
 	public static class 各行_各列に１個の王妃を配置する組み合わせテスト {
