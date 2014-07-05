@@ -4,7 +4,7 @@ package com.slgerkamp.mkjavaalgorithm.sort;
  * ソート
  *
  */
-public class Sort {
+public class BubbleSort {
 
 	/**
 	 * ソート方法

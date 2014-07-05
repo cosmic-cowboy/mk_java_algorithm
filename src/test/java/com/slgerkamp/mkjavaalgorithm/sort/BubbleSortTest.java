@@ -8,7 +8,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-import com.slgerkamp.mkjavaalgorithm.sort.Sort.ORDER;
+import com.slgerkamp.mkjavaalgorithm.sort.BubbleSort.ORDER;
 
 import static com.slgerkamp.mkjavaalgorithm.sort.IsSort.*;
 import static org.junit.Assert.*;
@@ -19,7 +19,7 @@ import static org.hamcrest.CoreMatchers.*;
  *
  */
 @RunWith(Enclosed.class)
-public class SortTest {
+public class BubbleSortTest {
 
 	@RunWith(Theories.class)
 	public static class 単純交換ソート_バブルソート_昇順テスト_version3{
@@ -33,7 +33,7 @@ public class SortTest {
 
 		@Theory
 		public void 単純交換ソート_バブルソート_昇順(Fixture f){
-			assertThat(Sort.bubbleSort_version3(f.targetArray, ORDER.ASCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
+			assertThat(BubbleSort.bubbleSort_version3(f.targetArray, ORDER.ASCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
 		}
 	}
 
@@ -49,7 +49,7 @@ public class SortTest {
 
 		@Theory
 		public void 単純交換ソート_バブルソート_降順(Fixture f){
-			assertThat(Sort.bubbleSort_version3(f.targetArray, ORDER.DESCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
+			assertThat(BubbleSort.bubbleSort_version3(f.targetArray, ORDER.DESCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
 		}
 	}
 	@RunWith(Theories.class)
@@ -64,7 +64,7 @@ public class SortTest {
 
 		@Theory
 		public void 単純交換ソート_バブルソート_昇順(Fixture f){
-			assertThat(Sort.bubbleSort(f.targetArray, ORDER.ASCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
+			assertThat(BubbleSort.bubbleSort(f.targetArray, ORDER.ASCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
 		}
 	}
 
@@ -80,7 +80,7 @@ public class SortTest {
 
 		@Theory
 		public void 単純交換ソート_バブルソート_降順(Fixture f){
-			assertThat(Sort.bubbleSort(f.targetArray, ORDER.DESCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
+			assertThat(BubbleSort.bubbleSort(f.targetArray, ORDER.DESCENDING), is(sortOf(f.expecedArray, f.expecedCounter)));
 		}
 	}
 
