@@ -6,7 +6,11 @@ package com.slgerkamp.mkjavaalgorithm.sort;
  */
 public class Sort {
 
+	/**
+	 * ソート方法
+	 */
 	public static enum ORDER {ASCENDING, DESCENDING}
+
 	
 	/**
 	 * 単純交換ソート(バブルソート) <br>
@@ -17,34 +21,50 @@ public class Sort {
 	 * @param order 並び順
 	 * @return ソートされたランダムな配列
 	 */
-	public static int[] bubbleSort(int [] targetArray, ORDER order){
+	public static SortResult bubbleSort(int [] targetArray, ORDER order){
 		
+		// ソート比較回数
+		int counter = 0;
 		// 配列の末尾
 		int lastElementNum = targetArray.length - 1;
 		// 配列の末尾からどこまでを比較するかを決定
 		for(int i = 0; i < lastElementNum; i++){
 
+			// n番目に小さい値をソートした際の交換回数
+			int exchg = 0;
 			// 配列の末尾から順番に並んだ２つの値を取得し
 			// 後方の配列の値が前方の配列の値より小さい場合
 			// ２つの配列の順番を交換する
 			// それを配列数 - 1 すると最小値が配列の先頭にくる
 			// 次に配列の中で２番目に小さい値を求める
 			for(int j = lastElementNum; j > i; j--){
+				// ソート比較回数
+				counter++;
 				int old_num = targetArray[j];
 				int new_num = targetArray[j - 1];
+				// shallow copyだから配列の値の受け渡しができているけど、
+				// ちょっと嫌だな
 				switch(order){
 					case ASCENDING:
-						ascendingOrder(targetArray, j, old_num, new_num);
+						if(ascendingOrder(targetArray, j, old_num, new_num)){
+							exchg++;
+						};
 						break;
 					case DESCENDING:
-						descendingOrder(targetArray, j, old_num, new_num);
+						if(descendingOrder(targetArray, j, old_num, new_num)){
+							exchg++;
+						}
 						break;
 					default :
 						break;
 				}
 			}
+			
+			if(exchg == 0){
+				break;
+			}
 		}
-		return targetArray;
+		return new SortResult(targetArray, counter);
 	}
 
 	/**
@@ -54,12 +74,15 @@ public class Sort {
 	 * @param old_num 比較される側
 	 * @param new_num 比較する側
 	 */
-	private static void ascendingOrder(int[] targetArray, int j, int old_num,
+	private static boolean ascendingOrder(int[] targetArray, int j, int old_num,
 			int new_num) {
+		boolean isExchg = false;
 		if(old_num < new_num){
 			targetArray[j - 1] = old_num;
 			targetArray[j] = new_num;
+			isExchg = true;
 		}
+		return isExchg;
 	}
 	
 	/**
@@ -69,11 +92,14 @@ public class Sort {
 	 * @param old_num 比較される側
 	 * @param new_num 比較する側
 	 */
-	private static void descendingOrder(int[] targetArray, int j, int old_num,
+	private static boolean descendingOrder(int[] targetArray, int j, int old_num,
 			int new_num) {
+		boolean isExchg = false;
 		if(old_num > new_num){
 			targetArray[j - 1] = old_num;
 			targetArray[j] = new_num;
+			isExchg = true;
 		}
+		return isExchg;
 	}
 }
