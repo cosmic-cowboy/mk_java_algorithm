@@ -1,7 +1,7 @@
 package com.slgerkamp.mkjavaalgorithm.sort;
 
 /**
- * ソート
+ * 単純交換ソート(バブルソート)
  *
  */
 public class BubbleSort {

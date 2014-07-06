@@ -1,7 +1,17 @@
 package com.slgerkamp.mkjavaalgorithm.sort;
 
+/**
+ * 単純選択ソート
+ *
+ */
 public class StraightSelectionSort {
 
+	/**
+	 * 単純選択ソート
+	 * 
+	 * @param targetArray ソートされていないランダムな配列
+	 * @return ソートされたランダムな配列
+	 */
 	public static SortResult straightSelectionSort(int [] targetArray){
 		
 		// カウンター
