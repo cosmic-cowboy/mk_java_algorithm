@@ -81,6 +81,50 @@ public class StringSearching {
 	}
 
 	
+	/**
+	 * boyer Moore法<br/>
+	 * 探索対象文字列に探索文字列があるかを確認する<br/>
+	 * あれば、文字列のインデックスを返す<br/>
+	 * なければ、-1<br/>
+	 * 
+	 * パターンの末尾から先頭に探索を行う<br/>
+	 * 
+	 * @param text:探索対象文字列
+	 * @param pattern:探索文字列
+	 * @return
+	 */
+	public static int boyerMooreMethod(String text, String pattern){
+		
+		// 探索対象文字列の現在の探索インデックスを表す
+		int textIndex = pattern.length() - 1;
+		// 探索対象文字列に対して探索文字列のインデックスを表す
+		int patternIndex = pattern.length() - 1;
+
+		// 文字列探索
+		while(textIndex < text.length() && patternIndex < pattern.length() && patternIndex > -1){
+			if(text.charAt(textIndex) == pattern.charAt(patternIndex)){
+				textIndex--;
+				patternIndex--;
+				System.out.println("text.charAt(textIndex) == pattern.charAt(patternIndex)" + ", textIndex:" + textIndex + ", patternIndex:" + patternIndex);
+			} else if (patternIndex == 0){
+				textIndex += pattern.length();
+				patternIndex += pattern.length() - 1;
+				System.out.println("else if (patternIndex == 0)" + ", textIndex:" + textIndex + ", patternIndex:" + patternIndex);
+			} else {
+				patternIndex--;
+				System.out.println("else" + ", textIndex:" + textIndex + ", patternIndex:" + patternIndex);
+			}
+		}
+		// 探索が成功した場合、
+		// 探索が成功した文字列の先頭インデックスを返す
+		if(patternIndex < 0){ 
+			return ++textIndex;
+		}
+		// 探索が失敗した場合、-1を返す
+		return -1;
+	}
+
+	
 	//////////////////////////////////////////
 	/// プライベートメソッド(private method)  ///
 	//////////////////////////////////////////

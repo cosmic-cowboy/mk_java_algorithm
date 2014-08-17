@@ -55,4 +55,25 @@ public class StringSearchingTest {
 
 	}
 
+
+	
+	@RunWith(Theories.class)
+	public static class boyer_Moore法テスト{
+		
+		@DataPoints
+		public static StringSearchingFixture[] FIXTURES = {
+			new StringSearchingFixture("ABABCDEFABCDEFABCABCGHA", "ABCABC", 14),
+			new StringSearchingFixture("AABABCDEFABCDEFAABCGHA", "AABC", 15),
+			new StringSearchingFixture("ABABCDEFGHA", "ABC", 2),
+			new StringSearchingFixture("ABC漢字DEF", "漢字", 3),
+			new StringSearchingFixture("ABC漢字DEF", "字数", -1)
+		};
+
+		@Theory
+		public void boyer_Moore法(StringSearchingFixture f){
+			assertThat(StringSearching.boyerMooreMethod(f.searchTarget, f.pattern), is(f.expecedIndex));
+		}
+
+	}
+
 }
